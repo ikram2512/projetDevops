@@ -1,0 +1,18 @@
+version: "3"
+networks:
+  app-network:
+    driver: bridge
+services:
+
+  timesheet:
+    container_name: timesheet
+    build: .
+    expose:
+      - "8088"
+    ports:
+      - "8088:8088"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://192.168.32.1:3306/springdb1
+    networks:
+      - app-network
+    restart: unless-stopped
